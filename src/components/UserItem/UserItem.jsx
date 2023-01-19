@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-export function UserItem({ id, name, username, phone, onDelete}) {
+export function UserItem({ id, name, username, phone, onDelete }) {
   return (
     <tr>
       <td>{id}</td>
@@ -8,12 +8,7 @@ export function UserItem({ id, name, username, phone, onDelete}) {
       <td>{username}</td>
       <td>{phone}</td>
       <td>
-        <button
-          className="btn btn-danger btn-sm"
-          onClick={() => onDelete(id)}
-        >
-          Delete
-        </button>
+        <button onClick={() => onDelete(id)}>Delete</button>
       </td>
     </tr>
   );

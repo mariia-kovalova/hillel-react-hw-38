@@ -1,7 +1,7 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
+import { Button, Error } from '../../GlobalStyles.styled';
 
 export function AddUserForm({ setModalOpen }) {
   const handleSubmit = (values, { resetForm }) => {
@@ -21,11 +21,6 @@ export function AddUserForm({ setModalOpen }) {
     username: yup.string().required(),
     phone: yup.string().required(),
   });
-
-  const Error = styled(ErrorMessage)`
-    color: red;
-    margin-bottom: 10px;
-  `;
 
   return (
     <div className="container">
@@ -50,17 +45,16 @@ export function AddUserForm({ setModalOpen }) {
             <Field type="text" name="phone" id="pnone" />
             <Error component="div" name="phone" />
           </div>
-          <div className="grid">
-            <button type="submit">Save</button>
-            <button
-              type="button"
-              onClick={() => {
-                setModalOpen(false);
-              }}
-            >
-              Cancel
-            </button>
-          </div>
+          <Button type="submit">Save</Button>
+          <Button
+            className="secondary"
+            type="button"
+            onClick={() => {
+              setModalOpen(false);
+            }}
+          >
+            Cancel
+          </Button>
         </Form>
       </Formik>
     </div>

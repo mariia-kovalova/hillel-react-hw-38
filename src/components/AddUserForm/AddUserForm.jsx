@@ -5,7 +5,6 @@ import { Button, Error } from '../../GlobalStyles.styled';
 
 export function AddUserForm({ setModalOpen }) {
   const handleSubmit = (values, { resetForm }) => {
-    console.log('values', values);
     resetForm();
     setModalOpen(false);
   };

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { UsersList } from '../UsersList/UsersList';
-import { ModalWindow } from '../Modal/Modal';
-import { AddUserForm } from '../AddUserForm/AddUserForm';
-import { Button } from '../../GlobalStyles.styled';
+import { UsersList } from './UsersList/UsersList';
+import { ModalWindow } from './ModalWindow/ModalWindow';
+import { AddUserForm } from './AddUserForm/AddUserForm';
+import { Button } from '../GlobalStyles.styled';
 
 const FETCH_URL = 'https://jsonplaceholder.typicode.com/users';
 

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { UsersList } from '../UsersList/UsersList';
-import { ModalWindow } from '../Modal/Modal';
-import { AddUserForm } from '../AddUserForm/AddUserForm';
+import { UsersList } from './UsersList/UsersList';
+import { ModalWindow } from './ModalWindow/ModalWindow';
+import { AddUserForm } from './AddUserForm/AddUserForm';
+import { Button } from '../GlobalStyles.styled';
 
 const FETCH_URL = 'https://jsonplaceholder.typicode.com/users';
 
@@ -24,7 +25,12 @@ export function App() {
   return (
     <>
       <UsersList usersInfo={users} onDelete={deleteUserById} />
-      <button onClick={() => setModalOpen(true)}>Add a user</button>
+      <Button
+        className="btn btn-danger btn-sm"
+        onClick={() => setModalOpen(true)}
+      >
+        Add a user
+      </Button>
       <ModalWindow isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
         <AddUserForm setModalOpen={setModalOpen} />
       </ModalWindow>

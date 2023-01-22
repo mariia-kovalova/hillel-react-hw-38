@@ -7,6 +7,7 @@ export function UsersList({ usersInfo, onDelete }) {
       <table>
         <thead>
           <tr>
+            <th scope="col"></th>
             <th scope="col">Name</th>
             <th scope="col">User name</th>
             <th scope="col">Phone Number</th>

@@ -5,6 +5,8 @@ import { Button, Error } from '../../GlobalStyles.styled';
 
 // const STORAGE_KEY = 'savedUsersInfo';
 
+// https://frankmeszaros.medium.com/use-localstorage-and-formik-to-supercharge-your-form-experience-a175d68e5ecb
+
 const initialValues = {
   name: '',
   username: '',

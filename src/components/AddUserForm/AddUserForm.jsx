@@ -1,25 +1,29 @@
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import PropTypes from 'prop-types';
+// import { save, load, remove } from '../../utils';
 import { Button, Error } from '../../GlobalStyles.styled';
 
-export function AddUserForm({ setModalOpen }) {
-  const handleSubmit = (values, { resetForm }) => {
+// const STORAGE_KEY = 'savedUsersInfo';
+
+const initialValues = {
+  name: '',
+  username: '',
+  phone: '',
+};
+
+const schema = yup.object().shape({
+  name: yup.string().required(),
+  username: yup.string().required(),
+  phone: yup.string().required(),
+});
+
+export function AddUserForm(props) {
+  const { onBtnClick, onSubmit } = props;
+
+  function handleSubmit(values, { resetForm }) {
+    onSubmit(values);
     resetForm();
-    setModalOpen(false);
-  };
-
-  const initialValues = {
-    name: '',
-    username: '',
-    phone: '',
-  };
-
-  const schema = yup.object().shape({
-    name: yup.string().required(),
-    username: yup.string().required(),
-    phone: yup.string().required(),
-  });
+  }
 
   return (
     <div className="container">
@@ -48,9 +52,7 @@ export function AddUserForm({ setModalOpen }) {
           <Button
             className="secondary"
             type="button"
-            onClick={() => {
-              setModalOpen(false);
-            }}
+            onClick={() => onBtnClick()}
           >
             Cancel
           </Button>
@@ -59,7 +61,3 @@ export function AddUserForm({ setModalOpen }) {
     </div>
   );
 }
-
-AddUserForm.prototype = {
-  setModalOpen: PropTypes.func.isRequired,
-};

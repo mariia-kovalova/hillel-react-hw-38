@@ -17,22 +17,32 @@ export function App() {
     });
   }, []);
 
-  function deleteUserById(userId) {
+  function handleDeleteUserById(userId) {
     const newUsers = users.filter(({ id }) => id !== userId);
     setUsers(newUsers);
   }
 
+  function toggleModalWindow() {
+    setModalOpen(!isModalOpen);
+  }
+
+  function handleSubmit(values) {
+    console.log(values);
+    toggleModalWindow();
+  }
+
   return (
     <>
-      <UsersList usersInfo={users} onDelete={deleteUserById} />
-      <Button
-        className="btn btn-danger btn-sm"
-        onClick={() => setModalOpen(true)}
-      >
+      <UsersList usersInfo={users} onDelete={handleDeleteUserById} />
+      <Button className="btn btn-danger btn-sm" onClick={toggleModalWindow}>
         Add a user
       </Button>
-      <ModalWindow isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-        <AddUserForm setModalOpen={setModalOpen} />
+      <ModalWindow isOpen={isModalOpen} onClose={toggleModalWindow}>
+        <AddUserForm
+          setModalOpen={setModalOpen}
+          onSubmit={handleSubmit}
+          onBtnClick={toggleModalWindow}
+        />
       </ModalWindow>
     </>
   );

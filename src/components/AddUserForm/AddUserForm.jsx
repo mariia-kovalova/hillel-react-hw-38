@@ -1,6 +1,8 @@
-import { Formik, Form, Field } from 'formik';
+import PropTypes from 'prop-types';
+import { Formik, Field } from 'formik';
 import * as yup from 'yup';
 import { Button, Error } from '../../GlobalStyles.styled';
+import { FormStyled, Label } from './AddUserForm.styled';
 
 const initialValues = {
   name: '',
@@ -14,9 +16,7 @@ const schema = yup.object().shape({
   phone: yup.string().required(),
 });
 
-export function AddUserForm(props) {
-  const { onBtnClick, onSubmit } = props;
-
+export function AddUserForm({ onSubmit, onCloseModal }) {
   function handleSubmit(values, { resetForm }) {
     onSubmit(values);
     resetForm();
@@ -29,19 +29,19 @@ export function AddUserForm(props) {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <Form>
+        <FormStyled>
           <div>
-            <label htmlFor="name">Name</label>
+            <Label htmlFor="name">Name</Label>
             <Field type="text" name="name" id="name" />
             <Error component="div" name="name" />
           </div>
           <div>
-            <label htmlFor="lastName">User name</label>
+            <Label htmlFor="lastName">User name</Label>
             <Field type="text" name="username" id="lastName" />
             <Error component="div" name="username" />
           </div>
           <div>
-            <label htmlFor="pnone">Pnone number</label>
+            <Label htmlFor="pnone">Pnone number</Label>
             <Field type="text" name="phone" id="pnone" />
             <Error component="div" name="phone" />
           </div>
@@ -49,12 +49,17 @@ export function AddUserForm(props) {
           <Button
             className="secondary"
             type="button"
-            onClick={() => onBtnClick()}
+            onClick={() => onCloseModal()}
           >
             Cancel
           </Button>
-        </Form>
+        </FormStyled>
       </Formik>
     </div>
   );
 }
+
+AddUserForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onCloseModal: PropTypes.func.isRequired,
+};

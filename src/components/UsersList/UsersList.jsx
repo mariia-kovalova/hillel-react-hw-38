@@ -15,14 +15,11 @@ export function UsersList({ usersInfo, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {usersInfo.map(({ id, name, username, phone }) => (
+          {usersInfo.map(user => (
             <UserItem
-              key={id}
-              id={id}
-              name={name}
-              username={username}
-              phone={phone}
-              onDelete={onDelete}
+              key={user.id}
+              user={user}
+              onDelete={() => onDelete(user.id)}
             />
           ))}
         </tbody>
@@ -32,6 +29,10 @@ export function UsersList({ usersInfo, onDelete }) {
 }
 
 UsersList.propTypes = {
-  usersInfo: PropTypes.arrayOf(PropTypes.object.isRequired),
+  usersInfo: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }).isRequired
+  ),
   onDelete: PropTypes.func.isRequired,
 };

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export function UserItem({ id, name, username, phone, onDelete }) {
+export function UserItem({ user: { id, name, username, phone }, onDelete }) {
   return (
     <tr>
       <td>{id}</td>
@@ -8,16 +8,18 @@ export function UserItem({ id, name, username, phone, onDelete }) {
       <td>{username}</td>
       <td>{phone}</td>
       <td>
-        <button onClick={() => onDelete(id)}>Delete</button>
+        <button onClick={onDelete}>Delete</button>
       </td>
     </tr>
   );
 }
 
 UserItem.propTypes = {
-  id: PropTypes.any,
-  name: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  phone: PropTypes.any,
+  user: PropTypes.shape({
+    id: PropTypes.any.isRequired,
+    name: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    phone: PropTypes.any,
+  }),
   onDelete: PropTypes.func.isRequired,
 };
